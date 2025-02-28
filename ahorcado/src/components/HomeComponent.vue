@@ -1,6 +1,6 @@
 <template>
 
-<div class="contenedorPrincipal"> <!--Div principal que contendra todas las demas secciones-->
+    <div class="contenedorPrincipal"> <!--Div principal que contendra todas las demas secciones-->
         <section> <!--Seccion de la parte superior de la pagina-->
             <div>
                 <h1>Juego de ahorcado</h1>

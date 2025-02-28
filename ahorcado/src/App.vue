@@ -7,14 +7,22 @@
 
 <script>
 
-import HomeComponent from './components/HomeComponent.vue';
+  import HomeComponent from './components/HomeComponent.vue';
 
-export default {
-  name: 'App',
-  components: {
-    HomeComponent
+  const { solicitarPalabras } = require('./ConexionAPI/APIService');
+
+  let datos = await solicitarPalabras();
+
+  print("Datos optenidos: ", datos);
+
+  export default {
+    name: 'App',
+    components: {
+      HomeComponent
+    }
   }
-}
+
+
 </script>
 
 <style>
