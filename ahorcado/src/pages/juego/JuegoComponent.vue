@@ -22,6 +22,8 @@
 
   import ModalComponente from "@/components/UsuariosModalComponent.vue";
 
+  const { solicitarPalabras } = require('@/ConexionAPI/APIService')
+
   export default {
     name: "JuegoVista",
     components: {
@@ -33,6 +35,7 @@
         usuarioAgregado: false,
         nombreA: "",
         nombreB: "",
+        largoPalabra: 0,
 
         
       };
@@ -41,19 +44,50 @@
       abrirModal() {
         this.mostrarModal = true;
       },
+
+      // Funcion encargada de cerrar el modal para el ingreso de los nombres de los jugadores.
       cerrarModal() {
         this.mostrarModal = false;
         this.usuarioAgregado = true;
         this.iniciarJuego();
       },
+
+      // Funcion encargada de inciar el proceso de juego.
       iniciarJuego() {
 
-        this.nombreA = sessionStorage.getItem("JugadorA");
-        this.nombreB = sessionStorage.getItem("JugadorB");
- 
+        this.asignarJugadores();
+
+        let palabras = solicitarPalabras();
+        console.log(palabras);
+      }, 
+
+      // Funcion encargada de asignar el jugador que ira primero en las rondas
+      asignarJugadores() {
+        let numero = numeroAlreatorio(1,0);
+
+        if (numero === 0) {
+          // return [nombreA, nombreB];
+          this.nombreA = sessionStorage.getItem("JugadorA");
+          this.nombreB = sessionStorage.getItem("JugadorB");
+          
+        } else {
+          this.nombreA = sessionStorage.getItem("JugadorB");
+          this.nombreB = sessionStorage.getItem("JugadorA");
+        }
+        
       },
+
+
+
     },
   };
+
+
+  // Funcion para optener un numero de forma aleatoria.
+  function numeroAlreatorio(max, min) {
+    return Math.floor(Math.random() * (max - min + 1)) + min
+  }
+
 
 </script>
 

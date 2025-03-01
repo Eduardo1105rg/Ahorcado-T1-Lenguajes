@@ -14,10 +14,12 @@
                 <div>
                     <p>Presiona el boton de abajo para ir a revisar el historial de las partidas jugadas.</p>
                 </div>
-                <router-link to="/estadisticas">Historial</router-link>
-                <form action="/verHistorial" method="post">
+                <div class="contenedor-redireccion">
+                    <router-link class="redireccion-btn" to="/estadisticas">Historial</router-link>
+                </div>
+                <!-- <form action="/verHistorial" method="post">
                     <button type="submit">Ver historial</button>
-                </form>
+                </form> -->
 
 
                 
@@ -36,10 +38,15 @@
                   
                 </div>
             
-                <router-link to="/juego">Juego</router-link>
-                <form action="/ventanaJuego" method="get">
+                <div class="contenedor-redireccion">
+
+                    <router-link class="redireccion-btn" to="/juego">Juego</router-link>
+                
+                </div>
+                
+                <!-- <form action="/ventanaJuego" method="get">
                     <button type="submit">Jugar</button>
-                </form>
+                </form> -->
     
             </div>
 
@@ -112,6 +119,36 @@ body {
 .contenedorDerecho form {
     text-align: center; 
     margin-top: 20px; 
+}
+
+.contenedor-redireccion {
+    text-align: center; 
+    margin-top: 50px; 
+}
+
+.redireccion-btn {
+    background-color: rgb(0, 0, 0);
+    color: rgba(240, 226, 34, 0.658);
+    font-family: sans-serif;
+    border: 0;
+    border-radius: 0 70px;
+    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+    margin: 5px;
+    font-size: 20px;
+    box-sizing: content-box;
+    padding: 4% 5%;
+    min-width: 20%;
+    touch-action: manipulation;
+    transition: background 0.7s;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.redireccion-btn :hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 .contenedorDerecho button {
