@@ -22,7 +22,7 @@
 
   import ModalComponente from "@/components/UsuariosModalComponent.vue";
 
-  const { solicitarPalabras } = require('@/ConexionAPI/APIService')
+  const { solicitarPalabras, OrdenarJugadores } = require('@/ConexionAPI/APIService')
 
   export default {
     name: "JuegoVista",
@@ -36,6 +36,7 @@
         nombreA: "",
         nombreB: "",
         largoPalabra: 0,
+        turnoActual: true,
 
         
       };
@@ -46,34 +47,43 @@
       },
 
       // Funcion encargada de cerrar el modal para el ingreso de los nombres de los jugadores.
-      cerrarModal() {
+      async cerrarModal() {
         this.mostrarModal = false;
         this.usuarioAgregado = true;
-        this.iniciarJuego();
+        await this.iniciarJuego();
       },
 
       // Funcion encargada de inciar el proceso de juego.
-      iniciarJuego() {
+      async iniciarJuego() {
 
-        this.asignarJugadores();
-
-        let palabras = solicitarPalabras();
+        let palabras = await solicitarPalabras();
         console.log(palabras);
+
+        await this.asignarJugadores();
+
       }, 
 
       // Funcion encargada de asignar el jugador que ira primero en las rondas
-      asignarJugadores() {
-        let numero = numeroAlreatorio(1,0);
+      async asignarJugadores() {
+        let ordenamiento = await OrdenarJugadores();
+        console.log(ordenamiento);
 
-        if (numero === 0) {
-          // return [nombreA, nombreB];
-          this.nombreA = sessionStorage.getItem("JugadorA");
-          this.nombreB = sessionStorage.getItem("JugadorB");
+        // this.nombreA = ordenamiento[0];
+        // this.nombreB = ordenamiento[1];
+
+        //let numero = numeroAlreatorio(1,0);
+        this.nombreA = sessionStorage.getItem("JugadorA");
+        this.nombreB = sessionStorage.getItem("JugadorB");
+
+        // if (numero === 0) {
+        //   // return [nombreA, nombreB];
+        //   this.nombreA = sessionStorage.getItem("JugadorA");
+        //   this.nombreB = sessionStorage.getItem("JugadorB");
           
-        } else {
-          this.nombreA = sessionStorage.getItem("JugadorB");
-          this.nombreB = sessionStorage.getItem("JugadorA");
-        }
+        // } else {
+        //   this.nombreA = sessionStorage.getItem("JugadorB");
+        //   this.nombreB = sessionStorage.getItem("JugadorA");
+        // }
         
       },
 
@@ -82,11 +92,18 @@
     },
   };
 
+  // async function EsperarOrdenamiento(){
+  //   let ordenamiento = await OrdenarJugadores();
+  //       console.log(ordenamiento);
+  //       //let numero = numeroAlreatorio(1,0);
+  //   return [sessionStorage.getItem("JugadorA"), sessionStorage.getItem("JugadorB")]
+        
+  // }
 
   // Funcion para optener un numero de forma aleatoria.
-  function numeroAlreatorio(max, min) {
-    return Math.floor(Math.random() * (max - min + 1)) + min
-  }
+  // function numeroAlreatorio(max, min) {
+  //   return Math.floor(Math.random() * (max - min + 1)) + min
+  // }
 
 
 </script>
