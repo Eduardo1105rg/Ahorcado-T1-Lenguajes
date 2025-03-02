@@ -69,6 +69,12 @@ async function OrdenarJugadores() {
 
 }
 
+// import axios from 'axios';
+
+// async function obtenerPalabras() {
+//   const respuesta = await axios.get('/api/palabras');
+//   console.log(respuesta.data);
+// }
 
 
 
