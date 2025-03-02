@@ -31,36 +31,36 @@
         <!-- Div para mostrar el teclado -->
         <div class="teclado-div">
 
-          <button class="tecla-div" @click="presionarTecla('A')">A</button>
-          <button class="tecla-div" @click="presionarTecla('B')">B</button>
+          <button class="tecla-div" @click="presionarTecla('a')">A</button>
+          <button class="tecla-div" @click="presionarTecla('b')">B</button>
 
-          <button class="tecla-div" @click="presionarTecla('C')">C</button>
+          <button class="tecla-div" @click="presionarTecla('c')">C</button>
 
-          <button class="tecla-div" @click="presionarTecla('D')">D</button>
-          <button class="tecla-div" @click="presionarTecla('E')">E</button>
+          <button class="tecla-div" @click="presionarTecla('d')">D</button>
+          <button class="tecla-div" @click="presionarTecla('e')">E</button>
 
-          <button class="tecla-div" @click="presionarTecla('F')">F</button>
-          <button class="tecla-div" @click="presionarTecla('G')">G</button>
-          <button class="tecla-div" @click="presionarTecla('H')">H</button>
-          <button class="tecla-div" @click="presionarTecla('I')">I</button>
-          <button class="tecla-div" @click="presionarTecla('J')">J</button>
-          <button class="tecla-div" @click="presionarTecla('K')">K</button>
-          <button class="tecla-div" @click="presionarTecla('L')">L</button>
-          <button class="tecla-div" @click="presionarTecla('M')">M</button>
-          <button class="tecla-div" @click="presionarTecla('N')">N</button>
-          <button class="tecla-div" @click="presionarTecla('Ñ')">Ñ</button>
-          <button class="tecla-div" @click="presionarTecla('O')">O</button>
-          <button class="tecla-div" @click="presionarTecla('P')">P</button>
-          <button class="tecla-div" @click="presionarTecla('Q')">Q</button>
-          <button class="tecla-div" @click="presionarTecla('R')">R</button>
-          <button class="tecla-div" @click="presionarTecla('S')">S</button>
-          <button class="tecla-div" @click="presionarTecla('T')">T</button>
-          <button class="tecla-div" @click="presionarTecla('U')">U</button>
-          <button class="tecla-div" @click="presionarTecla('V')">V</button>
-          <button class="tecla-div" @click="presionarTecla('W')">W</button>
-          <button class="tecla-div" @click="presionarTecla('X')">X</button>
-          <button class="tecla-div" @click="presionarTecla('Y')">Y</button>
-          <button class="tecla-div" @click="presionarTecla('Z')">Z</button>
+          <button class="tecla-div" @click="presionarTecla('f')">F</button>
+          <button class="tecla-div" @click="presionarTecla('g')">G</button>
+          <button class="tecla-div" @click="presionarTecla('h')">H</button>
+          <button class="tecla-div" @click="presionarTecla('i')">I</button>
+          <button class="tecla-div" @click="presionarTecla('j')">J</button>
+          <button class="tecla-div" @click="presionarTecla('k')">K</button>
+          <button class="tecla-div" @click="presionarTecla('l')">L</button>
+          <button class="tecla-div" @click="presionarTecla('m')">M</button>
+          <button class="tecla-div" @click="presionarTecla('n')">N</button>
+          <button class="tecla-div" @click="presionarTecla('ñ')">Ñ</button>
+          <button class="tecla-div" @click="presionarTecla('o')">O</button>
+          <button class="tecla-div" @click="presionarTecla('p')">P</button>
+          <button class="tecla-div" @click="presionarTecla('q')">Q</button>
+          <button class="tecla-div" @click="presionarTecla('r')">R</button>
+          <button class="tecla-div" @click="presionarTecla('s')">S</button>
+          <button class="tecla-div" @click="presionarTecla('t')">T</button>
+          <button class="tecla-div" @click="presionarTecla('u')">U</button>
+          <button class="tecla-div" @click="presionarTecla('v')">V</button>
+          <button class="tecla-div" @click="presionarTecla('w')">W</button>
+          <button class="tecla-div" @click="presionarTecla('x')">X</button>
+          <button class="tecla-div" @click="presionarTecla('y')">Y</button>
+          <button class="tecla-div" @click="presionarTecla('z')">Z</button>
           <!-- <button @click="presionarTecla('')"></button> -->
 
 
@@ -186,7 +186,7 @@
 
   import ModalComponente from "@/components/UsuariosModalComponent.vue";
 
-  const { solicitarPalabras, OrdenarJugadores } = require('@/ConexionAPI/APIService')
+  const { IncializarJuego, EnviarLetra } = require('@/ConexionAPI/APIService')
 
   export default {
     name: "JuegoVista",
@@ -219,12 +219,12 @@
       // Funcion encargada de inciar el proceso de juego.
       async iniciarJuego() {
 
-        let palabras = await solicitarPalabras();
-        this.inicializarListaLetras(palabras.palabra1.length);
+        let datosJugador = await IncializarJuego();
+        this.inicializarListaLetras(datosJugador.Palabra.length);
         // this.cantLetras = palabras.palabra1;
         // console.log(palabras);
 
-        await this.asignarJugadores();
+        //await this.asignarJugadores();
         //palabras = await solicitarPalabras();
       }, 
 
@@ -232,20 +232,27 @@
         this.letrasJugadorActual = Array(largo).fill("_");
       },
 
+      // Funcion encargada de reaccionar a cuando se presiona una tecla en el teclado virtual
+      async presionarTecla(letra) {
+        console.log("Tecla presionada...", letra);
+
+        let nuevoTurno = await EnviarLetra(letra);
+        console.log("Los datos del nuevo turno: ", nuevoTurno );
+      },
       // actualizarLetras(letra, indice) {
       //   this.$set(this.letras, indice, letra);
       // },
       // Funcion encargada de asignar el jugador que ira primero en las rondas
-      async asignarJugadores() {
-        let ordenamiento = await OrdenarJugadores();
-        console.log(ordenamiento);
+      //async asignarJugadores() {
+        //let ordenamiento = await OrdenarJugadores();
+        //console.log(ordenamiento);
 
         // this.nombreA = ordenamiento[0];
         // this.nombreB = ordenamiento[1];
 
         //let numero = numeroAlreatorio(1,0);
-        this.nombreA = sessionStorage.getItem("JugadorA");
-        this.nombreB = sessionStorage.getItem("JugadorB");
+        // this.nombreA = sessionStorage.getItem("JugadorA");
+        // this.nombreB = sessionStorage.getItem("JugadorB");
 
         // if (numero === 0) {
         //   // return [nombreA, nombreB];
@@ -257,10 +264,9 @@
         //   this.nombreB = sessionStorage.getItem("JugadorA");
         // }
         
-      },
-      async presionarTecla(letra) {
-        console.log("Tecla presionada...", letra);
-      },
+      //},
+
+
 
 
 
