@@ -238,33 +238,31 @@
 
         let nuevoTurno = await EnviarLetra(letra);
         console.log("Los datos del nuevo turno: ", nuevoTurno );
+
+        await this.NuevoTurno(nuevoTurno);
+
       },
-      // actualizarLetras(letra, indice) {
-      //   this.$set(this.letras, indice, letra);
-      // },
-      // Funcion encargada de asignar el jugador que ira primero en las rondas
-      //async asignarJugadores() {
-        //let ordenamiento = await OrdenarJugadores();
-        //console.log(ordenamiento);
 
-        // this.nombreA = ordenamiento[0];
-        // this.nombreB = ordenamiento[1];
+      async NuevoTurno(datosJugador) {
+        await this.inicializarListaLetras(datosJugador["Palabra"].length);
 
-        //let numero = numeroAlreatorio(1,0);
-        // this.nombreA = sessionStorage.getItem("JugadorA");
-        // this.nombreB = sessionStorage.getItem("JugadorB");
+        let letrasEncontradas = datosJugador["Letras"]
 
-        // if (numero === 0) {
-        //   // return [nombreA, nombreB];
-        //   this.nombreA = sessionStorage.getItem("JugadorA");
-        //   this.nombreB = sessionStorage.getItem("JugadorB");
-          
-        // } else {
-        //   this.nombreA = sessionStorage.getItem("JugadorB");
-        //   this.nombreB = sessionStorage.getItem("JugadorA");
-        // }
+        for (let letra in letrasEncontradas ) {
+          console.log("Letra a ubicar: ", letra);
+          for (let pos of letrasEncontradas[letra]) {
+            console.log("Pos a usar: ", pos);
+            this.actualizarLetras(letra.toUpperCase(), pos);
+          }
+        }
         
-      //},
+      },
+
+      actualizarLetras(letra, indice) {
+        this.letrasJugadorActual[indice] = letra;
+        //this.$set(, indice, letra);
+      },
+
 
 
 
@@ -273,18 +271,7 @@
     },
   };
 
-  // async function EsperarOrdenamiento(){
-  //   let ordenamiento = await OrdenarJugadores();
-  //       console.log(ordenamiento);
-  //       //let numero = numeroAlreatorio(1,0);
-  //   return [sessionStorage.getItem("JugadorA"), sessionStorage.getItem("JugadorB")]
-        
-  // }
 
-  // Funcion para optener un numero de forma aleatoria.
-  // function numeroAlreatorio(max, min) {
-  //   return Math.floor(Math.random() * (max - min + 1)) + min
-  // }
 
 
 </script>
