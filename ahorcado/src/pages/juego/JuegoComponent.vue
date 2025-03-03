@@ -236,10 +236,17 @@
       async presionarTecla(letra) {
         console.log("Tecla presionada...", letra);
 
-        let nuevoTurno = await EnviarLetra(letra);
-        console.log("Los datos del nuevo turno: ", nuevoTurno );
+        let estaJuego = await EnviarLetra(letra);
+        console.log("Los datos del nuevo turno: ", estaJuego );
 
-        await this.NuevoTurno(nuevoTurno);
+        //let jugadorActual = estaJuego[TurnoActual];
+
+        let siguienteJugador = estaJuego["SiguienteTurno"];
+
+        //this.actualizarPalabra(letrasEncontradas)
+
+
+        await this.NuevoTurno(siguienteJugador);
 
       },
 
@@ -248,15 +255,26 @@
 
         let letrasEncontradas = datosJugador["Letras"]
 
-        for (let letra in letrasEncontradas ) {
+        this.actualizarPalabra(letrasEncontradas);
+        // for (let letra in letrasEncontradas ) {
+        //   console.log("Letra a ubicar: ", letra);
+        //   for (let pos of letrasEncontradas[letra]) {
+        //     console.log("Pos a usar: ", pos);
+        //     this.actualizarLetras(letra.toUpperCase(), pos);
+        //   }
+        // }
+        
+      },
+
+      actualizarPalabra(letras) {
+        for (let letra in letras ) {
           console.log("Letra a ubicar: ", letra);
-          for (let pos of letrasEncontradas[letra]) {
+          for (let pos of letras[letra]) {
             console.log("Pos a usar: ", pos);
             this.actualizarLetras(letra.toUpperCase(), pos);
           }
         }
-        
-      },
+      }, 
 
       actualizarLetras(letra, indice) {
         this.letrasJugadorActual[indice] = letra;
@@ -317,6 +335,7 @@
   /*=====>>>> Estilos del teclado */
   .teclado-div {
     background-color: aliceblue;
+    align-items: center;
   }
 
 
@@ -327,6 +346,8 @@
   /* Estilos del contenedor de la imagen */
   .imagen-div {
     background-color: aquamarine;
+    height: 20%;
+
   }
 
 
