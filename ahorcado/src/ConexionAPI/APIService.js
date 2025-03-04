@@ -70,7 +70,7 @@ async function IncializarJuego() {
 }
 
 
-async function EnviarLetra(letra) {
+async function EnviarLetra(letra, tiempo) {
 
     console.log("Pasando por aqui.1...");
 
@@ -81,7 +81,7 @@ async function EnviarLetra(letra) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ Letra: letra })
+            body: JSON.stringify({ Letra: letra, Tiempo: tiempo })
 
         });
 

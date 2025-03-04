@@ -20,9 +20,9 @@
       <div class="contenedor-teclado-palabra-div">
         <div class="datos-jugador-div">
 
-          <label class="turno-label">Torno del jugador: {{ nombreJugador }}</label>
+          <label class="turno-label">Turno del jugador: {{ nombreJugador }}</label>
           <label class="intentos-label">Intentos retantes del jugador: {{ intentosRestantes }}</label>
-          <label class="intentos-label">Tiempo: </label>
+          <label class="intentos-label">Tiempo transcurrido en este turno: {{ tiempoTurno }} segundos.</label>
 
         </div>
 
@@ -137,6 +137,9 @@
         letrasJugadorActual: [],
         letrasJugadas: [],
         rutaImagen:"http://elahorcado.com/img/ahorcadoA-04.png",
+        tiempoTurno: 0,
+        temporizador: null,
+
 
 
 
@@ -165,6 +168,12 @@
 
         this.intentosRestantes = datosJugador["IntentosRestantes"];
 
+        this.tiempoTurno = 0
+
+        this.temporizador = setInterval(() => {
+          this.tiempoTurno++;
+          //console.log("Tiempo ++");
+        }, 1000);
         // this.cantLetras = palabras.palabra1;
         // console.log(palabras);
 
@@ -178,32 +187,56 @@
 
       // Funcion encargada de reaccionar a cuando se presiona una tecla en el teclado virtual
       async presionarTecla(letra) {
-        console.log("Tecla presionada...", letra);
 
-        let estaJuego = await EnviarLetra(letra);
+        clearInterval(this.temporizador);
+        //console.log("Tecla presionada...", letra);
+
+        let estaJuego = await EnviarLetra(letra, this.tiempoTurno);
+
         console.log("Los datos del nuevo turno: ", estaJuego );
 
         let jugadorActual = estaJuego["TurnoActual"];
-        console.log("Juga", jugadorActual);
+        //console.log("Juga", jugadorActual);
+
+        await this.actulizarDatos(jugadorActual);
+
 
         let siguienteJugador = estaJuego["SiguienteTurno"];
 
-
+        
         //this.actualizarPalabra(letrasEncontradas)
 
+        // Para que se espere un rato antes de pasar al siguiente jugador.
+        setTimeout(() => {
+          
+          this.nuevoTurno(siguienteJugador);
 
-        await this.NuevoTurno(siguienteJugador);
+        }, 3000);
+        
+      },
+
+      async nuevoTurno(datosJugador) {
+
+        await this.actulizarDatos(datosJugador);
+
+        this.tiempoTurno = 0
+
+        this.temporizador = setInterval(() => {
+          this.tiempoTurno++;
+        }, 1000);
 
       },
 
-      async NuevoTurno(datosJugador) {
+
+      async actulizarDatos(datosJugador) {
+
         await this.inicializarListaLetras(datosJugador["Palabra"].length);
 
         this.nombreJugador = datosJugador["Nombre"];
 
         this.intentosRestantes = datosJugador["IntentosRestantes"];
 
-        let letrasEncontradas = datosJugador["Letras"]
+        let letrasEncontradas = datosJugador["Letras"];
 
         this.actualizarPalabra(letrasEncontradas);
 
