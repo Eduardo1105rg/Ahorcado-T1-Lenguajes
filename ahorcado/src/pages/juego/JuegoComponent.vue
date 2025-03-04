@@ -8,15 +8,23 @@
     </modal-componente>
 
     <!-- Contenedor en donde se mostrara todo el contenido del juego. -->
-    <div v-if="usuarioAgregado"> 
+    <div class="contenedor-principal" v-if="usuarioAgregado"> 
 
       <!-- <h1>Página de Juego</h1>
       <router-link to="/">Inicio</router-link>
     
       <p>{{ nombreA }} --- {{ nombreB }}</p> -->
 
+
       <!-- Div contenedor de lo que seria el teclado y donde se muestran las letras.-->
       <div class="contenedor-teclado-palabra-div">
+        <div class="datos-jugador-div">
+
+          <label class="turno-label">Torno del jugador: {{ nombreJugador }}</label>
+          <label class="intentos-label">Intentos retantes del jugador: {{ intentosRestantes }}</label>
+          <label class="intentos-label">Tiempo: </label>
+
+        </div>
 
         <!-- Div para mostrar los recuadros de donde se ma mostrarndo la palbra. -->
         <div class="palabra-div">
@@ -31,136 +39,62 @@
         <!-- Div para mostrar el teclado -->
         <div class="teclado-div">
 
-          <button class="tecla-div" @click="presionarTecla('a')">A</button>
-          <button class="tecla-div" @click="presionarTecla('b')">B</button>
+          
+          <button class="tecla-btn" @click="presionarTecla('a')" :disabled="letrasJugadas.includes('a')">A</button>
+          
+          <button class="tecla-btn" @click="presionarTecla('b')" :disabled="letrasJugadas.includes('b')">B</button>
 
-          <button class="tecla-div" @click="presionarTecla('c')">C</button>
+          <button class="tecla-btn" @click="presionarTecla('c')" :disabled="letrasJugadas.includes('c')">C</button>
 
-          <button class="tecla-div" @click="presionarTecla('d')">D</button>
-          <button class="tecla-div" @click="presionarTecla('e')">E</button>
+          <button class="tecla-btn" @click="presionarTecla('d')" :disabled="letrasJugadas.includes('d')">D</button>
+          
+          <button class="tecla-btn" @click="presionarTecla('e')" :disabled="letrasJugadas.includes('e')">E</button>
 
-          <button class="tecla-div" @click="presionarTecla('f')">F</button>
-          <button class="tecla-div" @click="presionarTecla('g')">G</button>
-          <button class="tecla-div" @click="presionarTecla('h')">H</button>
-          <button class="tecla-div" @click="presionarTecla('i')">I</button>
-          <button class="tecla-div" @click="presionarTecla('j')">J</button>
-          <button class="tecla-div" @click="presionarTecla('k')">K</button>
-          <button class="tecla-div" @click="presionarTecla('l')">L</button>
-          <button class="tecla-div" @click="presionarTecla('m')">M</button>
-          <button class="tecla-div" @click="presionarTecla('n')">N</button>
-          <button class="tecla-div" @click="presionarTecla('ñ')">Ñ</button>
-          <button class="tecla-div" @click="presionarTecla('o')">O</button>
-          <button class="tecla-div" @click="presionarTecla('p')">P</button>
-          <button class="tecla-div" @click="presionarTecla('q')">Q</button>
-          <button class="tecla-div" @click="presionarTecla('r')">R</button>
-          <button class="tecla-div" @click="presionarTecla('s')">S</button>
-          <button class="tecla-div" @click="presionarTecla('t')">T</button>
-          <button class="tecla-div" @click="presionarTecla('u')">U</button>
-          <button class="tecla-div" @click="presionarTecla('v')">V</button>
-          <button class="tecla-div" @click="presionarTecla('w')">W</button>
-          <button class="tecla-div" @click="presionarTecla('x')">X</button>
-          <button class="tecla-div" @click="presionarTecla('y')">Y</button>
-          <button class="tecla-div" @click="presionarTecla('z')">Z</button>
+          <button class="tecla-btn" @click="presionarTecla('f')" :disabled="letrasJugadas.includes('f')">F</button>
+          
+          <button class="tecla-btn" @click="presionarTecla('g')" :disabled="letrasJugadas.includes('g')">G</button>
+          
+          <button class="tecla-btn" @click="presionarTecla('h')" :disabled="letrasJugadas.includes('h')">H</button>
+          
+          <button class="tecla-btn" @click="presionarTecla('i')" :disabled="letrasJugadas.includes('i')">I</button>
+          
+          <button class="tecla-btn" @click="presionarTecla('j')" :disabled="letrasJugadas.includes('j')">J</button>
+          
+          <button class="tecla-btn" @click="presionarTecla('k')" :disabled="letrasJugadas.includes('k')">K</button>
+          
+          <button class="tecla-div" @click="presionarTecla('l')" :disabled="letrasJugadas.includes('l')">L</button>
+          
+          <button class="tecla-btn" @click="presionarTecla('m')" :disabled="letrasJugadas.includes('m')">M</button>
+          
+          <button class="tecla-btn" @click="presionarTecla('n')" :disabled="letrasJugadas.includes('n')">N</button>
+          
+          <button class="tecla-btn" @click="presionarTecla('ñ')" :disabled="letrasJugadas.includes('ñ')">Ñ</button>
+          
+          <button class="tecla-btn" @click="presionarTecla('o')" :disabled="letrasJugadas.includes('o')">O</button>
+          
+          <button class="tecla-btn" @click="presionarTecla('p')" :disabled="letrasJugadas.includes('p')">P</button>
+          
+          <button class="tecla-btn" @click="presionarTecla('q')" :disabled="letrasJugadas.includes('q')">Q</button>
+          
+          <button class="tecla-btn" @click="presionarTecla('r')" :disabled="letrasJugadas.includes('r')">R</button>
+          
+          <button class="tecla-btn" @click="presionarTecla('s')" :disabled="letrasJugadas.includes('s')">S</button>
+          
+          <button class="tecla-btn" @click="presionarTecla('t')" :disabled="letrasJugadas.includes('t')">T</button>
+          
+          <button class="tecla-btn" @click="presionarTecla('u')" :disabled="letrasJugadas.includes('u')">U</button>
+          
+          <button class="tecla-btn" @click="presionarTecla('v')" :disabled="letrasJugadas.includes('v')">V</button>
+          
+          <button class="tecla-btn" @click="presionarTecla('w')" :disabled="letrasJugadas.includes('w')">W</button>
+          
+          <button class="tecla-btn" @click="presionarTecla('x')" :disabled="letrasJugadas.includes('x')">X</button>
+          
+          <button class="tecla-btn" @click="presionarTecla('y')" :disabled="letrasJugadas.includes('y')">Y</button>
+          
+          <button class="tecla-btn" @click="presionarTecla('z')" :disabled="letrasJugadas.includes('z')">Z</button>
           <!-- <button @click="presionarTecla('')"></button> -->
 
-
-
-
-          <!-- <div class="tecla-div">
-            <button @click="presionarTecla('A')">A</button>
-          </div>
-
-          <div class="tecla-div">
-            <label>B</label>
-          </div>
-
-          <div class="tecla-div">
-            <label>C</label>
-          </div>
-
-          <div class="tecla-div">
-            <label>D</label>
-          </div>
-
-          <div class="tecla-div">
-            <label>F</label>
-          </div>
-
-          <div class="tecla-div">
-            <label>G</label>
-          </div>
-
-          <div class="tecla-div">
-            <label>H</label>
-          </div>
-          
-          <div class="tecla-div">
-            <label>I</label>
-          </div>
-
-          <div class="tecla-div" >
-            <label>J</label>
-          </div>  
-
-          <div class="tecla-div">
-            <label>K</label>
-          </div>
-
-          <div class="tecla-div">
-            <label>L</label>
-          </div>
-
-          <div class="tecla-div">
-            <label>M</label>
-          </div>
-
-          <div class="tecla-div">
-            <label>N</label>
-          </div>
-
-          <div class="tecla-div">
-            <label>O</label>
-          </div>
-
-          <div class="tecla-div">
-            <label>P</label>
-          </div>
-
-          <div class="tecla-div">
-            <label>Q</label>
-          </div>
-
-          <div class="tecla-div">
-            <label>R</label>
-          </div>
-
-          <div class="tecla-div">
-            <label>S</label>
-          </div>
-
-          <div class="tecla-div">
-            <label>T</label>
-          </div>
-
-          <div class="tecla-div">
-            <label>U</label>
-          </div>
-
-          <div class="tecla-div">
-            <label>V</label>
-          </div>
-
-          <div class="tecla-div">
-            <label>X</label>
-          </div>
-
-          <div class="tecla-div">
-            <label>Y</label>
-          </div>
-
-          <div class="tecla-div">
-            <label>Z</label>
-          </div> -->
 
         </div>
 
@@ -170,7 +104,8 @@
       <!-- Div para mostrar la imagen del muñeco -->
       <div class="imagen-div">
 
-
+        <img class="imagen-ahorcado" :src="rutaImagen" alt="Imagen Ahorcado">
+        
       </div>
 
 
@@ -197,9 +132,13 @@
       return {
         mostrarModal: true, // Controla la visibilidad del modal
         usuarioAgregado: false,
-        nombreA: "",
-        nombreB: "",
+        nombreJugador: "",
+        intentosRestantes: 0,
         letrasJugadorActual: [],
+        letrasJugadas: [],
+        rutaImagen:"http://elahorcado.com/img/ahorcadoA-04.png",
+
+
 
         
       };
@@ -221,6 +160,11 @@
 
         let datosJugador = await IncializarJuego();
         this.inicializarListaLetras(datosJugador.Palabra.length);
+
+        this.nombreJugador = datosJugador["Nombre"];
+
+        this.intentosRestantes = datosJugador["IntentosRestantes"];
+
         // this.cantLetras = palabras.palabra1;
         // console.log(palabras);
 
@@ -239,9 +183,11 @@
         let estaJuego = await EnviarLetra(letra);
         console.log("Los datos del nuevo turno: ", estaJuego );
 
-        //let jugadorActual = estaJuego[TurnoActual];
+        let jugadorActual = estaJuego["TurnoActual"];
+        console.log("Juga", jugadorActual);
 
         let siguienteJugador = estaJuego["SiguienteTurno"];
+
 
         //this.actualizarPalabra(letrasEncontradas)
 
@@ -253,9 +199,16 @@
       async NuevoTurno(datosJugador) {
         await this.inicializarListaLetras(datosJugador["Palabra"].length);
 
+        this.nombreJugador = datosJugador["Nombre"];
+
+        this.intentosRestantes = datosJugador["IntentosRestantes"];
+
         let letrasEncontradas = datosJugador["Letras"]
 
         this.actualizarPalabra(letrasEncontradas);
+
+        this.letrasJugadas = datosJugador["LetrasPresionadas"];
+
         // for (let letra in letrasEncontradas ) {
         //   console.log("Letra a ubicar: ", letra);
         //   for (let pos of letrasEncontradas[letra]) {
@@ -281,7 +234,7 @@
         //this.$set(, indice, letra);
       },
 
-
+      
 
 
 
@@ -296,30 +249,55 @@
 
 <style scoped>
 
-  /* ========================== >>>> Seccion de la palabra y el teclado ==================*/
-
-  /* Estilos del contenedor de la palabra y del teclado */
-  .contenedor-teclado-palabra-div {
+  .contenedor-principal {
     background-color: beige;
 
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 
     height: 90vh;
+    width:  100vh;
+
     box-sizing: border-box;
     margin: 5%;
+    padding: 3% 2%;
 
+
+    border-radius: 10px;
+  }
+  /* ========================== >>>> Seccion de la palabra y el teclado ==================*/
+
+  /* Estilos del contenedor de la palabra y del teclado */
+  
+  .contenedor-teclado-palabra-div {
+    /* background-color: black; */
+
+    /* display: flex;
+    justify-content: space-between; */
+    align-items: center;
+    height: 100%;
+    width: 50%;
+    box-sizing: border-box;
+    margin: 0% 5%;
+    /* padding: 5%; */
     border-radius: 10px;
     
 
   }
 
 
+  .datos-jugador-div {
+    display: grid;
+    text-align: center;
+  }
 
   /*=====>>>> Estilos del de la palabra */
   .palabra-div {
-    background-color: aqua;
+    /* background-color: aqua; */
+    text-align: center;
+    margin: 5%;
+
   }
 
   .letra-div {
@@ -330,12 +308,13 @@
     border: 1px solid #ef8b3e;
     color: #ef8b3e;
     line-height: 1.5em;
-    align-items: center;
+
   }
   /*=====>>>> Estilos del teclado */
   .teclado-div {
-    background-color: aliceblue;
-    align-items: center;
+    /* background-color: aliceblue; */
+    align-content: center;
+    justify-content: space-between;
   }
 
 
@@ -345,9 +324,20 @@
 
   /* Estilos del contenedor de la imagen */
   .imagen-div {
-    background-color: aquamarine;
-    height: 20%;
+    /* background-color: rgb(197, 40, 40); */
 
+    box-sizing: border-box;
+
+    padding: 2%;
+    width: 50%;
+
+  }
+
+  .imagen-ahorcado {
+    max-width: 100%;
+    max-height: 50%;
+    width: auto;
+    height: auto;
   }
 
 

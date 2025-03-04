@@ -91,8 +91,8 @@ async function EnviarLetra(letra) {
             const resultado = await respuesta.json();
             console.log("Llego la respuesta.", resultado);
 
-            return resultado.JugadorActual;
-
+            // return resultado.JugadorActual;
+            return resultado;
         } else {
             console.log("La respuesta no fue la esperada, es erronea..")
         }
