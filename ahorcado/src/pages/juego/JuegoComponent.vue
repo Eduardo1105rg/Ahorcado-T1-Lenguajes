@@ -139,6 +139,7 @@
         rutaImagen:"http://elahorcado.com/img/ahorcadoA-04.png",
         tiempoTurno: 0,
         temporizador: null,
+        desactivarTeclado: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'ñ', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'], 
 
 
 
@@ -207,11 +208,27 @@
         //this.actualizarPalabra(letrasEncontradas)
 
         // Para que se espere un rato antes de pasar al siguiente jugador.
+        this.letrasJugadas = this.desactivarTeclado;
+
+        // this.$swal({
+        //   title: "Good job!",
+        //   text: "You clicked the button!",
+        //   icon: "success"
+        // });
+        //this.$swal('¡Hola, SweetAlert2 en Vue!');
+        this.$swal({
+          title: 'Info',
+          text: 'Esta alerta desaparecerá en 2 segundos.',
+          icon: 'info',
+          timer: 2000, // Tiempo en milisegundos antes de que desaparezca la alerta
+          showConfirmButton: false, // Oculta el botón de confirmación
+        });
+
         setTimeout(() => {
           
           this.nuevoTurno(siguienteJugador);
 
-        }, 3000);
+        }, 4000);
         
       },
 
