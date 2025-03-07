@@ -192,23 +192,34 @@
         clearInterval(this.temporizador);
         //console.log("Tecla presionada...", letra);
 
-        let estaJuego = await EnviarLetra(letra, this.tiempoTurno);
+        let estaJuego = await EnviarLetra(letra, this.tiempoTurno, this.nombreJugador);
 
         console.log("Los datos del nuevo turno: ", estaJuego );
 
         let jugadorActual = estaJuego["TurnoActual"];
-        //console.log("Juga", jugadorActual);
-
-        await this.actulizarDatos(jugadorActual);
-
 
         let siguienteJugador = estaJuego["SiguienteTurno"];
+
+        //console.log("Juga", jugadorActual);
+
+        if (estaJuego["Repeticion"]) {
+          await this.actulizarDatos(siguienteJugador);
+
+        } else {
+          await this.actulizarDatos(jugadorActual);
+        }
+
+        this.letrasJugadas = this.desactivarTeclado;
+
+
+        if (estaJuego["Ganador"]) {
+          console.log("El ganodor es ...", estaJuego["DatosGanador"]);
+        }
 
         
         //this.actualizarPalabra(letrasEncontradas)
 
         // Para que se espere un rato antes de pasar al siguiente jugador.
-        this.letrasJugadas = this.desactivarTeclado;
 
         // this.$swal({
         //   title: "Good job!",
@@ -271,9 +282,9 @@
 
       actualizarPalabra(letras) {
         for (let letra in letras ) {
-          console.log("Letra a ubicar: ", letra);
+          //console.log("Letra a ubicar: ", letra);
           for (let pos of letras[letra]) {
-            console.log("Pos a usar: ", pos);
+            //console.log("Pos a usar: ", pos);
             this.actualizarLetras(letra.toUpperCase(), pos);
           }
         }
