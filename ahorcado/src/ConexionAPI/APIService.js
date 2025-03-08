@@ -74,7 +74,7 @@ async function EnviarLetra(letra, tiempo, nombre) {
 }
 
 
-
+// Funcion que solicita el estado del juego al final de cada ronda
 async function finalRonda() {
 
     try {
@@ -106,7 +106,7 @@ async function finalRonda() {
     
 }
 
-
+// Funcion para solicitar el historial de partidas jugadas.
 async function solicitarHistorial() {
     try {
 
