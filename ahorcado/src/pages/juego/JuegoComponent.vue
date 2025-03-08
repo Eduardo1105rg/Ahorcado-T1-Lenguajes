@@ -136,7 +136,7 @@
         intentosRestantes: 0,
         letrasJugadorActual: [],
         letrasJugadas: [],
-        rutaImagen:"http://elahorcado.com/img/ahorcadoA-04.png",
+        rutaImagen: "",//http://elahorcado.com/img/ahorcadoA-04.png | 
         tiempoTurno: 0,
         temporizador: null,
         desactivarTeclado: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'ñ', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'], 
@@ -168,6 +168,7 @@
         this.nombreJugador = datosJugador["Nombre"];
 
         this.intentosRestantes = datosJugador["IntentosRestantes"];
+        this.rutaImagen = this.seleccionImagen(datosJugador["IntentosRestantes"]);
 
         this.tiempoTurno = 0
 
@@ -240,7 +241,7 @@
 
 
           }, 5000);
-          
+
           let nuevoRonda = await finalRonda();
           
           // Para cuando se llega al final del juego.
@@ -268,18 +269,21 @@
               });
             }
             setTimeout(() => {
-
-              // Aqui hacemos el prodimiento para ir a la siguiente ronda 
-              this.usuarioAgregado = false;
-              this.mostrarModal = true;
-              return;
-
             }, 5000);
+              // Aqui hacemos el prodimiento para ir a la siguiente ronda 
+            this.usuarioAgregado = false;
+            this.mostrarModal = true;
+            return;
 
           }
 
           await this.actulizarDatos(nuevoRonda["DatosJugador"]);
+          this.tiempoTurno = 0
 
+          this.temporizador = setInterval(() => {
+            this.tiempoTurno++;
+          }, 1000);
+          
           return;
         }
 
@@ -336,6 +340,7 @@
 
         this.letrasJugadas = datosJugador["LetrasPresionadas"];
 
+        this.rutaImagen = this.seleccionImagen(datosJugador["IntentosRestantes"]);
         // for (let letra in letrasEncontradas ) {
         //   console.log("Letra a ubicar: ", letra);
         //   for (let pos of letrasEncontradas[letra]) {
@@ -373,13 +378,38 @@
         this.temporizador = null;
       },
 
-      
+      seleccionImagen(intentos) {
+        console.log("Intentos:  ", intentos);
+        switch (intentos) {
+          case 5:
+              return require('@/assets/5-IMG.jpg');
+          case 4:
+              return require('@/assets/4-IMG.jpg');
+
+          case 3:
+              return require('@/assets/3-IMG.jpg');
+
+          case 2:
+              return require('@/assets/2-IMG.jpg');
+
+          case 1:
+              return  require('@/assets/1-IMG.jpg');
+
+          case 0:
+              return require('@/assets/0-IMG.jpg');
+
+              
+          default:
+              return require('@/assets/6-IMG.jpg');
+        }
+      }
+    }
+}      
 
 
 
 
-    },
-  };
+
 
 
 

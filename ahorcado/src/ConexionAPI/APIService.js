@@ -92,7 +92,7 @@ async function finalRonda() {
             const resultado = await respuesta.json();
             console.log("Llego la respeusta del final de ronda: ", resultado);
 
-            return resultado
+            return resultado;
 
         } else {
             console.log("La respuesta no fue la esperada, es erronea..")
@@ -104,6 +104,34 @@ async function finalRonda() {
     
     
     
+}
+
+
+async function solicitarHistorial() {
+    try {
+
+        const respuesta = await fetch('http://localhost:5000/api/historial/', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+
+        console.log("Esperando la respuesta..");
+        if (respuesta.ok) {
+
+            const resultado = await respuesta.json();
+            console.log("Llego la respuesta con los datos del historial: ", resultado);
+
+            return resultado;
+
+        } else {
+            console.log("La respuesta no fue la esperada, es erronea..")
+        }
+
+    } catch (error) {
+        console.error('Error en la solicitud:', error);
+    }
 }
 
 
@@ -122,6 +150,7 @@ module.exports = {
     IncializarJuego, 
     EnviarLetra,
     finalRonda,
+    solicitarHistorial,
 };
 
 
