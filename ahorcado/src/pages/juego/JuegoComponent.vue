@@ -121,7 +121,7 @@
 
   import ModalComponente from "@/components/UsuariosModalComponent.vue";
 
-  const { IncializarJuego, EnviarLetra } = require('@/ConexionAPI/APIService')
+  const { IncializarJuego, EnviarLetra, finalRonda } = require('@/ConexionAPI/APIService')
 
   export default {
     name: "JuegoVista",
@@ -212,28 +212,57 @@
         this.letrasJugadas = this.desactivarTeclado;
 
 
-        if (estaJuego["Ganador"]) {
-          console.log("El ganodor es ...", estaJuego["DatosGanador"]);
+        // Validar se la ronda llego a su final
+        if (estaJuego["Ganador"] || estaJuego["Empate"]) {
+
+          if (estaJuego["Ganador"] ) {
+            this.$swal({
+              title: 'Ganador!',
+              text: 'Felicidades al jugador  por ganar la ronda.',
+              icon: 'success',
+              timer: 3000, // Tiempo en milisegundos antes de que desaparezca la alerta
+              showConfirmButton: false, // Oculta el botón de confirmación
+            });
+          } else {
+
+            this.$swal({
+              title: 'Empate',
+              text: 'La ronda finalizo en empate.',
+              icon: 'info',
+              timer: 3000, // Tiempo en milisegundos antes de que desaparezca la alerta
+              showConfirmButton: false, // Oculta el botón de confirmación
+            });
+
+          }
+
+          // Esperar un rato
+          setTimeout(() => {
+
+          // Aqui hacemos el prodimiento para ir a la siguiente ronda 
+
+
+          }, 5000);
+
+          let nuevoRonda = await finalRonda();
+          
+          await this.actulizarDatos(nuevoRonda["DatosJugador"]);
+
+          return;
         }
 
         
-        //this.actualizarPalabra(letrasEncontradas)
 
-        // Para que se espere un rato antes de pasar al siguiente jugador.
 
-        // this.$swal({
-        //   title: "Good job!",
-        //   text: "You clicked the button!",
-        //   icon: "success"
-        // });
-        //this.$swal('¡Hola, SweetAlert2 en Vue!');
-        this.$swal({
-          title: 'Info',
-          text: 'Esta alerta desaparecerá en 2 segundos.',
-          icon: 'info',
-          timer: 2000, // Tiempo en milisegundos antes de que desaparezca la alerta
-          showConfirmButton: false, // Oculta el botón de confirmación
-        });
+
+        if (jugadorActual["Fallo"]) {
+          this.$swal({
+            title: 'Letra erronea.',
+            text: 'La letra ingresada no corresponde a la palabra asignada.',
+            icon: 'error',
+            timer: 3000, // Tiempo en milisegundos antes de que desaparezca la alerta
+            showConfirmButton: false, // Oculta el botón de confirmación
+          });
+        }
 
         setTimeout(() => {
           
