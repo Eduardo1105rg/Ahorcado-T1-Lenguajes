@@ -76,4 +76,14 @@ export default {
 .historial-tabla tbody tr:nth-child(odd) {
   background-color: #fff;
 }
+
+
+.card {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    background-color: #f5f5f5;
+}
+
 </style>

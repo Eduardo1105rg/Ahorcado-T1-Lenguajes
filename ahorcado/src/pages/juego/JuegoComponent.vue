@@ -219,7 +219,7 @@
           if (estaJuego["Ganador"] ) {
             this.$swal({
               title: 'Ganador!',
-              text: 'Felicidades al jugador  por ganar la ronda.',
+              text: `Felicidades al jugador ${estaJuego["DatosGanador"]["Nombre"]} por ganar la ronda, con un tiempo de ${estaJuego["DatosGanador"]["Tiempo"]} segundos.`, //``
               icon: 'success',
               timer: 3000, // Tiempo en milisegundos antes de que desaparezca la alerta
               showConfirmButton: false, // Oculta el botón de confirmación
@@ -246,12 +246,13 @@
           
           // Para cuando se llega al final del juego.
           if (nuevoRonda["FinalJuego"]) {
-            this.reinicarValores();
 
+            this.reinicarValores();
+            setTimeout(() => {
             if (nuevoRonda["GanadorFinal"]) {
               this.$swal({
                 title: 'Ganador!',
-                text: 'Felicidades al jugador  por ganar la partida.',
+                text: `Felicidades al jugador ${nuevoRonda["DatosGanador"]["Nombre"]} por ganar la partida.`,
                 icon: 'success',
                 timer: 3000, // Tiempo en milisegundos antes de que desaparezca la alerta
                 showConfirmButton: false, // Oculta el botón de confirmación
@@ -268,8 +269,8 @@
                 showConfirmButton: false, // Oculta el botón de confirmación
               });
             }
-            setTimeout(() => {
-            }, 5000);
+            
+            }, 3000);
               // Aqui hacemos el prodimiento para ir a la siguiente ronda 
             this.usuarioAgregado = false;
             this.mostrarModal = true;
@@ -426,7 +427,7 @@
     align-items: center;
 
     height: 90vh;
-    width:  100vh;
+    width:  90%;
 
     box-sizing: border-box;
     margin: 5%;
@@ -486,7 +487,9 @@
     justify-content: space-between;
   }
 
-
+  .tecla-btn {
+    color: black;
+  }
 
 
   /* ========================== >>>> Seccion de la imagen del muñeco ==================*/
@@ -496,17 +499,19 @@
     /* background-color: rgb(197, 40, 40); */
 
     box-sizing: border-box;
+    align-items: center;
 
-    padding: 2%;
+    /* padding: 2%; */
     width: 50%;
 
   }
 
   .imagen-ahorcado {
-    max-width: 100%;
-    max-height: 50%;
-    width: auto;
+    /* max-width: 100%;
+    max-height: 100%; */
+    width: 50%;
     height: auto;
+    border-radius: 10px;
   }
 
 
