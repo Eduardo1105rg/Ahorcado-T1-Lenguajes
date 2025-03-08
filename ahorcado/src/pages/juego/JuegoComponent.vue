@@ -234,25 +234,54 @@
             });
 
           }
-
-          // Esperar un rato
           setTimeout(() => {
 
           // Aqui hacemos el prodimiento para ir a la siguiente ronda 
 
 
           }, 5000);
-
+          
           let nuevoRonda = await finalRonda();
           
+          // Para cuando se llega al final del juego.
+          if (nuevoRonda["FinalJuego"]) {
+            this.reinicarValores();
+
+            if (nuevoRonda["GanadorFinal"]) {
+              this.$swal({
+                title: 'Ganador!',
+                text: 'Felicidades al jugador  por ganar la partida.',
+                icon: 'success',
+                timer: 3000, // Tiempo en milisegundos antes de que desaparezca la alerta
+                showConfirmButton: false, // Oculta el botón de confirmación
+              });
+
+
+            } else {
+
+              this.$swal({
+                title: 'Empate',
+                text: 'El juego finalizo en empate.',
+                icon: 'info',
+                timer: 3000, // Tiempo en milisegundos antes de que desaparezca la alerta
+                showConfirmButton: false, // Oculta el botón de confirmación
+              });
+            }
+            setTimeout(() => {
+
+              // Aqui hacemos el prodimiento para ir a la siguiente ronda 
+              this.usuarioAgregado = false;
+              this.mostrarModal = true;
+              return;
+
+            }, 5000);
+
+          }
+
           await this.actulizarDatos(nuevoRonda["DatosJugador"]);
 
           return;
         }
-
-        
-
-
 
         if (jugadorActual["Fallo"]) {
           this.$swal({
@@ -262,8 +291,16 @@
             timer: 3000, // Tiempo en milisegundos antes de que desaparezca la alerta
             showConfirmButton: false, // Oculta el botón de confirmación
           });
-        }
 
+        } else {
+          this.$swal({
+            title: 'Letra correcta.',
+            text: 'La letra ingresada pertenece a la palabra.',
+            icon: 'success',
+            timer: 2000, // Tiempo en milisegundos antes de que desaparezca la alerta
+            showConfirmButton: false, // Oculta el botón de confirmación
+          });
+        }
         setTimeout(() => {
           
           this.nuevoTurno(siguienteJugador);
@@ -322,6 +359,18 @@
       actualizarLetras(letra, indice) {
         this.letrasJugadorActual[indice] = letra;
         //this.$set(, indice, letra);
+      },
+
+      reinicarValores() {
+
+        this.usuarioAgregado = false;
+        this.nombreJugador = "";
+        this.intentosRestantes = 0;
+        this.letrasJugadorActual = [];
+        this.letrasJugadas = [];
+        this.rutaImagen ="http://elahorcado.com/img/ahorcadoA-04.png",
+        this.tiempoTurno = 0;
+        this.temporizador = null;
       },
 
       
