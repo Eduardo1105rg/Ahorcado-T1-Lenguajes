@@ -1,13 +1,19 @@
 <template>
   <div class="historial-div">
     <h1>Historial de Partidas</h1>
-    <div v-for="(partida, key) in historial" :key="key" class="partida">
-      <h2>{{ key }}</h2>
-      <p><strong>Jugador 1:</strong> {{ partida.Jugador1 }}</p>
-      <p><strong>Jugador 2:</strong> {{ partida.Jugador2 }}</p>
-      <p><strong>Resultado:</strong> {{ partida.Resultado || "Sin resultados" }}</p>
-      <p><strong>Datos ganador:</strong> {{ partida.Ganador|| "Sin datos" }}</p>
-    </div>
+
+    <div>
+
+      <div v-for="(partida, key) in historial" :key="key" class="card">
+        <h2>{{ key }}</h2>
+        <p><strong>Jugador 1:</strong> {{ partida.Jugador1 }}</p>
+        <p><strong>Jugador 2:</strong> {{ partida.Jugador2 }}</p>
+        <p><strong>Resultado:</strong> {{ partida.Resultado || "Sin resultados" }}</p>
+        <p><strong>Datos ganador:</strong> {{ partida.Ganador|| "Sin datos" }}</p>
+      </div>
+
+   </div>
+
   </div>
 </template>
 
