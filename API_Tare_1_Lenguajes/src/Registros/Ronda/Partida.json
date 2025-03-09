@@ -1,0 +1,21 @@
+{
+  "Jugador1": {
+    "GanoAnterior": false,
+    "GanoActual": false,
+    "Tiempo": 39,
+    "Nombre": "Lu"
+  },
+  "Jugador2": {
+    "GanoAnterior": false,
+    "GanoActual": false,
+    "Nombre": "Sombra",
+    "Tiempo": 22
+  },
+  "GanadorFinal": false,
+  "DatosGanadorFinal": {},
+  "RondaAnterior": "Empate",
+  "RondaFinal": "Empate",
+  "EmpateFinal": true,
+  "UltimaRonda": true,
+  "JuegoTerminado": true
+}

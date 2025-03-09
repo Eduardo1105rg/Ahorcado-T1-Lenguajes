@@ -1,0 +1,34 @@
+{
+  "Jugador1": {
+    "Nombre": "Lu",
+    "Palabra": "campo",
+    "IntentosRestantes": 6,
+    "Letras": {},
+    "RutaImagen": "",
+    "Fallo": false,
+    "Tiempo": 0,
+    "LetrasPresionadas": [],
+    "Gano": false,
+    "Perdio": false
+  },
+  "Jugador2": {
+    "Nombre": "Sombra",
+    "Palabra": "gatos",
+    "IntentosRestantes": 6,
+    "Letras": {},
+    "RutaImagen": "",
+    "Fallo": false,
+    "Tiempo": 0,
+    "LetrasPresionadas": [],
+    "Gano": false,
+    "IntentoExtra": false,
+    "Perdio": false
+  },
+  "Turno": 1,
+  "CantLetras": 5,
+  "GanadorFinal": false,
+  "GanadorEncontrado": false,
+  "DatosGanadorFinal": {},
+  "Empate": false,
+  "Repeticion": false
+}

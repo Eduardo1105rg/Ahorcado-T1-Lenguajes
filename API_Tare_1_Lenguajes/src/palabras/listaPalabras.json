@@ -1,0 +1,11 @@
+{
+    "palabras": {
+      "3_letras": ["sol", "pan", "rey", "pez", "pie"],
+      "4_letras": ["mesa", "casa", "lobo", "flor", "luz"],
+      "5_letras": ["perro", "gatos", "nieve", "campo", "pluma"],
+      "6_letras": ["avion", "raton", "estre", "fruta", "bruja"],
+      "7_letras": ["camion", "jardín", "planeta", "palabra", "calamar"],
+      "8_letras": ["computar", "elefante", "montaña", "volcánes", "escalera"]
+    }
+}
+  

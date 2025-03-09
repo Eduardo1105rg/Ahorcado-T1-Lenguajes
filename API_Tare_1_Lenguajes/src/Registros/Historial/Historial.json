@@ -1,0 +1,105 @@
+{
+  "Juegos": {
+    "Partida-1": {
+      "Jugador1": "Damaris",
+      "Jugador2": "Damaris",
+      "Resultado": "Gano"
+    },
+    "Partida-2": {
+      "Jugador1": "Eduardo",
+      "Jugador2": "Damaris",
+      "Resultado": "Gano",
+      "Ganador": {
+        "GanoAnterior": true,
+        "GanoActual": false,
+        "Tiempo": 22,
+        "Nombre": "Eduardo"
+      }
+    },
+    "Partida-3": {
+      "Jugador1": "Sombra",
+      "Jugador2": "Lu",
+      "Resultado": "Gano",
+      "Ganador": {
+        "GanoAnterior": true,
+        "GanoActual": false,
+        "Tiempo": 22,
+        "Nombre": "Sombra"
+      }
+    },
+    "Partida-4": {
+      "Jugador1": "Sombra",
+      "Jugador2": "Lu",
+      "Resultado": "Gano",
+      "Ganador": {
+        "GanoAnterior": true,
+        "GanoActual": true,
+        "Tiempo": 53,
+        "Nombre": "Sombra"
+      }
+    },
+    "Partida-5": {
+      "Jugador1": "Sombra",
+      "Jugador2": "Lu",
+      "Resultado": "Gano",
+      "Ganador": {
+        "GanoAnterior": true,
+        "GanoActual": true,
+        "Tiempo": 52,
+        "Nombre": "Sombra"
+      }
+    },
+    "Partida-6": {
+      "Jugador1": "Perro",
+      "Jugador2": "Gato",
+      "Resultado": "Gano",
+      "Ganador": {
+        "GanoAnterior": false,
+        "GanoActual": true,
+        "Tiempo": 53,
+        "Nombre": "Perro"
+      }
+    },
+    "Partida-7": {
+      "Jugador1": "Gato",
+      "Jugador2": "Perro",
+      "Resultado": "Gano",
+      "Ganador": {
+        "GanoAnterior": true,
+        "GanoActual": true,
+        "Tiempo": 59,
+        "Nombre": "Gato"
+      }
+    },
+    "Partida-8": {
+      "Jugador1": "Lu",
+      "Jugador2": "Sombra",
+      "Resultado": "Empate",
+      "Ganador": {}
+    },
+    "Partida-9": {
+      "Jugador1": "Sombra",
+      "Jugador2": "Lu",
+      "Resultado": "Empate",
+      "Ganador": {}
+    },
+    "Partida-10": {
+      "Jugador1": "Lu",
+      "Jugador2": "Sombra",
+      "Resultado": "Gano",
+      "Ganador": {
+        "GanoAnterior": true,
+        "GanoActual": true,
+        "Tiempo": 75,
+        "Nombre": "Lu"
+      }
+    },
+    "Partida-11": {
+      "Jugador1": "Lu",
+      "Jugador2": "Sombra",
+      "Resultado": "Empate",
+      "Ganador": {}
+    }
+  },
+  "CantPartidas": 12
+}
