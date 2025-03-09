@@ -191,6 +191,8 @@
       async presionarTecla(letra) {
 
         clearInterval(this.temporizador);
+        this.letrasJugadas = this.desactivarTeclado;
+
         //console.log("Tecla presionada...", letra);
 
         let estaJuego = await EnviarLetra(letra, this.tiempoTurno, this.nombreJugador);
@@ -288,7 +290,17 @@
           return;
         }
 
-        if (jugadorActual["Fallo"]) {
+        let estadoLetra = false;
+
+        if (estaJuego["Repeticion"]) {
+          estadoLetra = siguienteJugador["Fallo"];
+        } else {
+          estadoLetra = jugadorActual["Fallo"];
+
+        }
+
+
+        if (estadoLetra) {//jugadorActual["Fallo"]
           this.$swal({
             title: 'Letra erronea.',
             text: 'La letra ingresada no corresponde a la palabra asignada.',
@@ -380,7 +392,7 @@
       },
 
       seleccionImagen(intentos) {
-        console.log("Intentos:  ", intentos);
+        //console.log("Intentos:  ", intentos);
         switch (intentos) {
           case 5:
               return require('@/assets/5-IMG.jpg');

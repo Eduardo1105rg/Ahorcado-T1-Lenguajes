@@ -106,7 +106,7 @@ async function finalRonda() {
     
 }
 
-// Funcion para solicitar el historial de partidas jugadas.
+// Funcion para solicitar el historial de partidas jugadas. |Puerto para jugar online: https://r6dsfvsj-5000.use2.devtunnels.ms/    --- Jugar local: http://localhost:5000/
 async function solicitarHistorial() {
     try {
 
